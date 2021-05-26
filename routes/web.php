@@ -23,17 +23,22 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-//Auth::routes();
-//
-//Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
 Route::group(['middleware' => 'auth'], function () {
     Route::group([
         'middleware' => 'admin',
         'prefix' => 'admin',
     ], function () {
-//        Route::get('/', function () {
-//            return view('admin');
-        Route::get('/', [UserController::class, 'index'])->name('admin');
+        Route::get('/', function () {
+            return view('admin');
         });
+    });
+});
+
+Route::group(['middleware' => 'auth'], function () {
+    Route::group([
+        'middleware' => 'user',
+        'prefix' => 'user',
+    ], function () {
+    Route::get('/', [UserController::class, 'index'])->name('user');
+    });
 });

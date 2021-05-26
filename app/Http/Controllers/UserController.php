@@ -9,8 +9,6 @@ class UserController extends Controller
 {
     public function index() {
         $user = Auth::user();
-        echo "name: $user->name \n email: $user->email \n id: $user->id";
-//        echo "email: $user->email \n";
-//        echo "id: $user->id";
+        return "name: $user->name \n email: $user->email \n id: $user->id";
     }
 }
